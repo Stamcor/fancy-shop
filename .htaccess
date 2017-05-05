@@ -1,0 +1,3 @@
+<Files "shop.sql">
+    Deny from all
+</Files>
