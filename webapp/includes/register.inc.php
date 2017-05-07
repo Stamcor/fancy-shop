@@ -78,12 +78,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         // This function salts it with a random salt and can be verified with
         // the password_verify function.
         $password = password_hash($password, PASSWORD_BCRYPT);
- 
-        // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO members (username, email, password) VALUES (:p1, :p2, :p3)")) {
-            $insert_stmt->bind_param(':p1', $username);
-			$insert_stmt->bind_param(':p2', $email);
-			$insert_stmt->bind_param(':p3', $password);
+
+        // Insert the new user into the database
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO members (username, email, password) VALUES (?, ?, ?)")) {
+            $insert_stmt->bind_param('sss', $username, $email, $password);
 
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {

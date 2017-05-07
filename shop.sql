@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.42)
 # Datenbank: shop
-# Erstellt am: 2017-05-05 23:02:17 +0000
+# Erstellt am: 2017-05-07 19:32:54 +0000
 # ************************************************************
 
 
@@ -20,6 +20,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
+# Export von Tabelle login_attempts
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `login_attempts`;
+
+CREATE TABLE `login_attempts` (
+  `user_id` int(11) unsigned NOT NULL,
+  `time` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# Export von Tabelle members
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `members`;
+
+CREATE TABLE `members` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `email` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 # Export von Tabelle products
 # ------------------------------------------------------------
 
@@ -27,7 +55,7 @@ DROP TABLE IF EXISTS `products`;
 
 CREATE TABLE `products` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
+  `name` text NOT NULL,
   `price` decimal(6,2) NOT NULL,
   `hidden` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
