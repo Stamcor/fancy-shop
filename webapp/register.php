@@ -1,18 +1,8 @@
 <?php
 include_once 'includes/register.inc.php';
 include_once 'includes/functions.php';
+require 'header.inc.php';
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>FancyShop: Registration Form</title>
-        <script type="text/JavaScript" src="js/sha512.js"></script> 
-        <script type="text/JavaScript" src="js/forms.js"></script>
-    </head>
-    <body>
-        <!-- Registration form to be output if the POST variables are not
-        set or if the registration script caused an error. -->
         <h1>Register with us</h1>
         <?php
         if (!empty($error_msg)) {
@@ -50,5 +40,8 @@ include_once 'includes/functions.php';
                                    this.form.confirmpwd);" /> 
         </form>
         <p>Return to the <a href="login.php">login page</a>.</p>
-    </body>
-</html>
+        <script type="text/JavaScript" src="js/sha512.js"></script> 
+        <script type="text/JavaScript" src="js/forms.js"></script>
+<?php
+require 'footer.inc.php';
+?>
