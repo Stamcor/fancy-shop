@@ -1,5 +1,5 @@
 <?php
-    require './header.inc.php';
+    require 'header.inc.php';
 ?>
 <table class="table">
     <tr>
@@ -14,11 +14,11 @@
     }
     $sql = "SELECT * FROM products WHERE hidden = 0" . $tmp;
     if ($result = $mysqli->query($sql)) {
-        while ($row = $result->fetch_object()) {
+        while ($product = $result->fetch_object()) {
 ?>
     <tr>
-        <td class="product-name"><?php echo $row->name ?></td>
-        <td class="product-price"><?php echo $row->price ?>$</td>
+        <td class="product-name"><a href="product.php?id=<?php echo $product->id ?>"><?php echo $product->name ?></a></td>
+        <td class="product-price"><?php echo $product->price ?>$</td>
     </tr>
 <?php
         }
@@ -28,5 +28,5 @@
 ?>
 </table>
 <?php
-    require './footer.inc.php';
+    require 'footer.inc.php';
 ?>
