@@ -1,14 +1,12 @@
 <?php
 /**
  * These are the database login details
- 
-   TODO: configure the file with the appropriate values.
-   TODO: add protection against unauthorized access of this file!
+ * TODO: add protection against unauthorized access of this file!
  */
-define("HOST", [N/A] ); 			// The host you want to connect to. 
-define("USER", [N/A]); 				// The database username. 
-define("PASSWORD", [N/A]); 		// The database password. 
-define("DATABASE", [N/A]);       // The database name.
+define("HOST", "localhost" ); 			// The host you want to connect to. 
+define("USER", "shop"); 				    // The database username. 
+define("PASSWORD", "FancyShop"); 		// The database password. 
+define("DATABASE", "shop");         // The database name.
 
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");
