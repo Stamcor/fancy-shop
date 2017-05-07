@@ -12,7 +12,7 @@
         die("Connection failed: " . $mysqli->connect_error);
     }
     if (isset($_GET["search"]) && $_GET["search"]!="") {
-        $tmp = "AND name='" . $_GET["search"] . "'";       
+        $tmp = "AND name LIKE '%" . $_GET["search"] . "%'";
     } else {
         $tmp = "";
     }
@@ -32,4 +32,3 @@
 <?php
     require './footer.inc.php';
 ?>
-
