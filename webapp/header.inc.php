@@ -18,13 +18,25 @@
           <ul class="nav navbar-nav">
             <li><a href="#">Link</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right"  method="get">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" name="product" class="form-control" placeholder="Search">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <form action="/index.php">
+           <button  type="submit" value="" onclick="setValue()" name="search" class="btn btn-default">Submit</button>
+           </from>
           </form>
         </div>
       </div>
     </nav>
     <div class="container">
+    <script>
+      function setValue() {
+          var prod = document.getElementsByName("product")[0].value;
+          if (prod!="") {
+            document.getElementsByName("search")[0].value = prod;
+          } else {
+            document.getElementsByName("search")[0].value = "";
+          }
+      }
+    </script>

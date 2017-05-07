@@ -11,7 +11,12 @@
     if ($mysqli->connect_errno) {
         die("Connection failed: " . $mysqli->connect_error);
     }
-    $sql = "SELECT * FROM products WHERE hidden = 0";
+    if (isset($_GET["search"]) && $_GET["search"]!="") {
+        $tmp = "AND name='" . $_GET["search"] . "'";       
+    } else {
+        $tmp = "";
+    }
+    $sql = "SELECT * FROM products WHERE hidden = 0 " . $tmp;
     if ($result = $mysqli->query($sql)) {
         while ($row = $result->fetch_object()) {
 ?>
@@ -27,3 +32,4 @@
 <?php
     require './footer.inc.php';
 ?>
+
