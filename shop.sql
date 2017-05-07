@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.42)
 # Datenbank: shop
-# Erstellt am: 2017-05-07 19:32:54 +0000
+# Erstellt am: 2017-05-07 22:39:24 +0000
 # ************************************************************
 
 
@@ -57,6 +57,8 @@ CREATE TABLE `products` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `price` decimal(6,2) NOT NULL,
+  `description` text NOT NULL,
+  `flag` varchar(25) DEFAULT NULL,
   `hidden` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -64,9 +66,10 @@ CREATE TABLE `products` (
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 
-INSERT INTO `products` (`id`, `name`, `price`, `hidden`)
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `flag`, `hidden`)
 VALUES
-	(1,'Test product',27.99,0);
+	(1,'Test product',27.99,'This product will allow you to test nearly everything. It is therefor a very useful tool for everyone.','30% off',0),
+	(3,'Normal product',49.99,'This is a very simple product with no special details.',NULL,0);
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;

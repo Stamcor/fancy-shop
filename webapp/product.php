@@ -10,9 +10,13 @@ if (isset($_GET["id"]) && $_GET["id"] != "") {
         $stmt->execute();
         $result = $stmt->get_result();
         $product = $result->fetch_object();
+        if (!is_null($product->flag)) {
+            $label = " <span class=\"label label-danger\">" . $product->flag . "</span>";
+        }
 ?>
-<h2><?php echo $product->name ?></h2>
+<h2><?php echo $product->name . $label ?></h2>
 <p class="lead">Price: <?php echo $product->price ?>&thinsp;$</p>
+<p><?php echo $product->description ?></p>
 <?php
     } else {
         ?>Database error.<?php 
