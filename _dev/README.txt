@@ -1,0 +1,1 @@
+Use the sec_session_start() function in each page presented to the user!
