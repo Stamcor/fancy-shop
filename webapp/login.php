@@ -2,35 +2,33 @@
 include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 
-/**
- *	Login page. The includes are especially dangerous as they allow anyone to map out the application easily.
- *
- */
-
 sec_session_start();
-
-if (login_check($mysqli) == true) {
-    $logged = 'in';
-} else {
-    $logged = 'out';
-}
 require 'header.inc.php';
+
 if (isset($_GET['error'])) {
-    echo '<p class="error">Error Logging In!</p>';
+    echo '<div class="row"><div class="alert alert-danger col-sm-offset-2 col-sm-6">Error Logging In!</div></div>';
 }
+
 ?> 
-        <form action="includes/process_login.php" method="post" name="login_form"> 			
-            Email: <input type="text" name="email" />
-            Password: <input type="password" 
-                             name="password" 
-                             id="password"/>
-            <input type="button" 
-                   value="Login" 
-                   onclick="formhash(this.form, this.form.password);" /> 
+        <form action="includes/process_login.php" method="post" name="login_form" class="form-horizontal">
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-6">
+                    <input type='text' name='email' id='email' class="form-control" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-6">
+                    <input type='password' name='password' id='password' class="form-control" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <input type="button" value="Login" class="btn btn-primary" onclick="formhash(this.form, this.form.password);">
+                </div>
+            </div>
         </form>
-        <p>If you don't have a login, please <a href="register.php">register</a></p>
-        <p>If you are done, please <a href="includes/logout.php">log out</a>.</p>
-        <p>You are currently logged <?php echo $logged ?>.</p><br>
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <script type="text/JavaScript" src="js/forms.js"></script> 
 <?php
