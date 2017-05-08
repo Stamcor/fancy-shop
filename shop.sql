@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.42)
 # Datenbank: shop
-# Erstellt am: 2017-05-07 22:39:24 +0000
+# Erstellt am: 2017-05-08 14:07:28 +0000
 # ************************************************************
 
 
@@ -46,6 +46,15 @@ CREATE TABLE `members` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `members` WRITE;
+/*!40000 ALTER TABLE `members` DISABLE KEYS */;
+
+INSERT INTO `members` (`id`, `username`, `password`, `email`)
+VALUES
+	(1,'test','$2y$10$GYMaX3DQYMKUIz9NMs/KLuei/LeZqC39e4d11cnCpiBXAEnIWOHlu','test@user.com');
+
+/*!40000 ALTER TABLE `members` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle products
@@ -70,10 +79,35 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `flag`, `hidden`)
 VALUES
 	(1,'Test product',27.99,'This product will allow you to test nearly everything. It is therefor a very useful tool for everyone.','30% off',0),
 	(2,'Greatest thing ever',99.99,'This product is the best thing we ever created. ',NULL,1),
-    (3,'Normal product',49.99,'This is a very simple product with no special details.',NULL,0),
-    (15,'Future product',99.99,'This product is TOP SECRET!!! ',NULL,1);
+	(3,'Normal product',49.99,'This is a very simple product with no special details.',NULL,0),
+	(15,'Future product',99.99,'This product is TOP SECRET!!! ',NULL,1);
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle reviews
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `reviews`;
+
+CREATE TABLE `reviews` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `product_id` int(11) unsigned NOT NULL,
+  `time` int(12) unsigned NOT NULL,
+  `text` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `reviews` WRITE;
+/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+
+INSERT INTO `reviews` (`id`, `user_id`, `product_id`, `time`, `text`)
+VALUES
+	(1,1,1,1494252154,'I like this product very much. It makes testing so easy!');
+
+/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
