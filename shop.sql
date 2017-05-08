@@ -69,7 +69,9 @@ LOCK TABLES `products` WRITE;
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `flag`, `hidden`)
 VALUES
 	(1,'Test product',27.99,'This product will allow you to test nearly everything. It is therefor a very useful tool for everyone.','30% off',0),
-	(3,'Normal product',49.99,'This is a very simple product with no special details.',NULL,0);
+	(2,'Greatest thing ever',99.99,'This product is the best thing we ever created. ',NULL,1),
+    (3,'Normal product',49.99,'This is a very simple product with no special details.',NULL,0),
+    (15,'Future product',99.99,'This product is TOP SECRET!!! ',NULL,1);
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
