@@ -22,24 +22,37 @@ require 'header.inc.php';
             </li>
             <li>Your password and confirmation must match exactly</li>
         </ul>
-        <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>">
-            Username: <input type='text' name='username' id='username' /><br>
-            Email: <input type="text" name="email" id="email" /><br>
-            Password: <input type="password"
-                             name="password" 
-                             id="password"/><br>
-            Confirm password: <input type="password" 
-                                     name="confirmpwd" 
-                                     id="confirmpwd" /><br>
-            <input type="button" 
-                   value="Register" 
-                   onclick="return regformhash(this.form,
-                                   this.form.username,
-                                   this.form.email,
-                                   this.form.password,
-                                   this.form.confirmpwd);" /> 
+        <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" class="form-horizontal">
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-6">
+                    <input type='text' name='username' id='username' class="form-control" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-6">
+                    <input type='email' name='email' id='email' class="form-control" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-6">
+                    <input type='password' name='password' id='password' class="form-control" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmpwd" class="col-sm-2 control-label">Confirm password</label>
+                <div class="col-sm-6">
+                    <input type='password' name='confirmpwd' id='confirmpwd' class="form-control" placeholder="Confirm password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <input type="button" value="Register" class="btn btn-primary" onclick="return regformhash(this.form, this.form.username, this.form.email, this.form.password, this.form.confirmpwd);">
+                </div>
+            </div>
         </form>
-        <p>Return to the <a href="login.php">login page</a>.</p>
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <script type="text/JavaScript" src="js/forms.js"></script>
 <?php
