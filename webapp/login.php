@@ -6,7 +6,7 @@ sec_session_start();
 require 'header.inc.php';
 
 if (isset($_GET['error'])) {
-    echo '<p class="error">Error Logging In!</p>';
+    echo '<div class="row"><div class="alert alert-danger col-sm-offset-2 col-sm-6">Error Logging In!</div></div>';
 }
 
 ?> 

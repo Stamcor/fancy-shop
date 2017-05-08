@@ -21,14 +21,14 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Not a valid email
-        $error_msg .= '<p class="error">The email address you entered is not valid</p>';
+        $error_msg .= '<li>The email address you entered is not valid</li>';
     }
  
     $password = filter_input(INPUT_POST, 'p', FILTER_SANITIZE_STRING);
     if (strlen($password) != 128) {
         // The hashed pwd should be 128 characters long.
         // If it's not, something really odd has happened
-        $error_msg .= '<p class="error">Invalid password configuration.</p>';
+        $error_msg .= '<li>Invalid password configuration.</li>';
     }
  
     // Username validity and password validity have been checked client side.
@@ -44,11 +44,11 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
  
         if ($stmt->num_rows == 1) {
             // A user with this email address already exists
-            $error_msg .= '<p class="error">A user with this email address already exists.</p>';
+            $error_msg .= '<li>A user with this email address already exists.</li>';
                         $stmt->close();
         }
     } else {
-        $error_msg .= '<p class="error">Database error Line 39</p>';
+        $error_msg .= '<li>Database error Line 39</li>';
                 $stmt->close();
     }
  
@@ -63,11 +63,11 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
  
                 if ($stmt->num_rows == 1) {
                         // A user with this username already exists
-                        $error_msg .= '<p class="error">A user with this username already exists</p>';
+                        $error_msg .= '<li>A user with this username already exists</li>';
                         $stmt->close();
                 }
         } else {
-                $error_msg .= '<p class="error">Database error line 55</p>';
+                $error_msg .= '<li>Database error line 55</li>';
                 $stmt->close();
         }
 
@@ -90,5 +90,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         }
         header('Location: ./register_success.php');
     }
+    $error_msg = '<div class="row"><div class="alert alert-danger col-sm-offset-2 col-sm-6"><ul>' . $error_msg . '</ul></div></div>';
 }
 ?>
