@@ -2,7 +2,7 @@
         <center>
 <?php
 if ($logged_in) {
-  ?>You are logged in as <?php echo $_SESSION["username"] ?>. Do not forget to <a href="includes/logout.php">log out</a><?php
+  ?>You are logged in as <b><?php echo $_SESSION["username"] ?></b>. Do not forget to <a href="includes/logout.php">log out</a><?php
 } else {
   ?>You are not logged in. Please <a href="login.php">login</a> or <a href="register.php">register</a>.<?php
 }
