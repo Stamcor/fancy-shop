@@ -28,20 +28,13 @@ SELECT * FROM products WHERE hidden = 0 AND name LIKE '%' UNION SELECT null, use
 ```
 
 ## Cross site scripting on the review dashboard
-When logged in, we have the possibility to write a review about a product. This post will be published visible for every user. There is no sanitization of the input, so we are allowed to insert HTML code and javascript code directly.
+When logged in, we have the possibility to write a review about a product. This post will be published visible for every user. There is no sanitisation of the input, so we are allowed to insert HTML code and javascript code directly.
 
-If we insert 
+If we insert `<script>fancy javascript </script>` and send this review, we see that the text disappeared because it is interpreted as page source code.
 
-` '<script> fancy javascript </script> `
-
- and send this review, we see that the text disappeared because it is interpreted as page sourcecode.
-When we insert 
-
-` <script> alert("you got hacked")</script> ` 
-
-we will cause the alertbox to appear, everytime a user visits the review section.
+When we insert `<script>alert("you got hacked")</script>` we will cause the alert box to appear, every time a user visits the review section.
 
 If the user is logged in at the same time and we want to perform bad tasks like sending a good (or bad) review for a specific product,
 we can do it with the session cookie of someone else.
 
-Thise vulnerability gives also the chance to steal session cookies and perform different bad tasks.
+These vulnerability gives also the chance to steal session cookies and perform different bad tasks.

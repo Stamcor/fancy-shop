@@ -4,15 +4,19 @@ require 'header.inc.php';
 
 if (isset($_GET["id"]) && $_GET["id"] != "") {
     $id = $_GET["id"];
-    $sql = "SELECT * FROM products WHERE id = ? LIMIT 1";
+    $sql = "SELECT * FROM products WHERE id = ? AND hidden = 0 LIMIT 1";
     $stmt = $mysqli->prepare($sql);
     if ($stmt) {
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $product = $result->fetch_object();
-        if (!is_null($product->flag)) {
-            $label = " <span class=\"label label-danger\">" . $product->flag . "</span>";
+        if ($result->num_rows == 1) {
+            $product = $result->fetch_object();
+            if (!is_null($product->flag)) {
+                $label = " <span class=\"label label-danger\">" . $product->flag . "</span>";
+            }
+        } else {
+            ?>Product does not exist.<?php 
         }
 ?>
 <h2><?php echo $product->name . $label ?></h2>
