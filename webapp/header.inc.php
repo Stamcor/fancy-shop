@@ -13,6 +13,8 @@ $logged_in = login_check($mysqli);
     <title>Fancy Shop</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -25,9 +27,11 @@ $logged_in = login_check($mysqli);
             <li><a href="#">Link</a></li>
           </ul>
           <form class="navbar-form navbar-right"  method="get" action="/index.php">
-            <div class="form-group">
+            <div class="input-group">
               <input type="text" name="search" class="form-control" placeholder="Search" value="<?php echo $_GET["search"] ?>">
-              <button  type="submit" class="btn btn-default">Submit</button>
+              <span class="input-group-btn">
+                <button  type="submit" class="btn btn-default">Go!</button>
+              </span>
             </div>
           </form>
         </div>
